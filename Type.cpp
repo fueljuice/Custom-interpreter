@@ -1,8 +1,11 @@
 #include "type.h"
 
+Type::Type()
+	: isTemp_(false){}
+
 bool Type::isTemp() const noexcept
 {
-	return false;
+	return isTemp_;
 }
 
 void Type::setTemp(bool state) noexcept

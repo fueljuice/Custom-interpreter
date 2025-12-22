@@ -5,6 +5,7 @@
 class Type
 {
 public:
+	Type();
 	// setter/getter for the isTemp field
 	bool isTemp() const noexcept;
 	void setTemp(bool state) noexcept;
@@ -14,7 +15,7 @@ public:
 	virtual std::string toString() const noexcept = 0;
 
 private:
-	bool isTemp_ = false;
+	bool isTemp_;
 };
 
 

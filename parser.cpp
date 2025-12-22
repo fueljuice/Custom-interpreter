@@ -44,6 +44,7 @@ Type* Parser::getType(std::string& str)
 	int i;
 	bool boolParam;
 	Type* typeObj = nullptr;
+	std::vector<Type*> v;
 	// cleaning indentation in the start
 	Helper::trim(str);
 
@@ -71,6 +72,14 @@ Type* Parser::getType(std::string& str)
 		typeObj->setTemp(true);
 	}
 
+	v = isList(str);
+	if (!v.empty())
+	{
+		typeObj = new List(v);
+		typeObj->setTemp(true);
+
+	}
+
 	if (typeObj == nullptr)
 		throw SyntaxException();
 
@@ -92,52 +101,92 @@ bool Parser::isLegalVarName(const std::string& str)
 
 bool Parser::makeAssignment(const std::string& str)
 {
-	int spaceLessEqualsIndex, equalsIndex;
-	std::string leftObjName, rightObjName;
-	std::string spacelessStr = str;
-	Type* rightTypeObj = nullptr;
+	int trimmedStrEqualsIndex, equalsIndex;
+	std::string destName, srcName;
+	std::string trimmedStr = str;
+	Type* srcObj = nullptr;
+
 	// trimming spaces
-	spacelessStr.erase(remove(spacelessStr.begin(),
-		spacelessStr.end(), ' '), spacelessStr.end());
+	Helper::trim(trimmedStr);
 
 	// finds the index of the "="
-	spaceLessEqualsIndex = spacelessStr.find('=');
-	if (spaceLessEqualsIndex == spacelessStr.npos)
+	trimmedStrEqualsIndex = trimmedStr.find('=');
+	if (trimmedStrEqualsIndex == trimmedStr.npos) 
 		return false;
 
 	// equals sign cant be on the edges
-	if (spaceLessEqualsIndex == 0 || spaceLessEqualsIndex == spacelessStr.length())
+	if (trimmedStrEqualsIndex == 0 || trimmedStrEqualsIndex == trimmedStr.length() - 1)
+		return false;
+
+	// cant have more than 1 equals sign
+	if (trimmedStr.find('=', trimmedStrEqualsIndex + 1) != std::string::npos) 
 		return false;
 
 	// if reached here there must be a "=" (since previously chgecked)
 	equalsIndex = str.find('=');
 
 	// extracting substrings
-	leftObjName = str.substr(0, equalsIndex);
-	rightObjName = str.substr(equalsIndex, str.length());
+	destName = str.substr(0, equalsIndex);
+	srcName = str.substr(equalsIndex + 1, str.length());
+	Helper::trim(destName);
+	Helper::trim(srcName);
 
-	if (!isLegalVarName(leftObjName))
-		throw NameErrorException(leftObjName);
-	if (!isLegalVarName(rightObjName))
-		throw NameErrorException(rightObjName);
+	if (!isLegalVarName(destName))
+		throw NameErrorException(destName);
 
 	// if the right obj is a variable and not an prvalue, deep copy
-	if (variables_.find(rightObjName) != variables_.end())
+	if(!isLegalVarName(srcName))
 	{
-		rightTypeObj = variables_.at(rightObjName);
+		if (variables_.find(srcName) != variables_.end())
+		{
+			Type* src = variables_.at(srcName);
+			if (dynamic_cast<List*>(src))
+			{
+				// if list keep pointer
+				srcObj = src;
+			}
+			else
+			{
+				// if non list, deep copy (call copy ctor)
+				if (auto* pi = dynamic_cast<Integer*>(src))
+					srcObj = new Integer(*pi);
+
+				else if (auto* pb = dynamic_cast<Boolean*>(src))
+					srcObj = new Boolean(*pb);
+
+				else if (auto* ps = dynamic_cast<String*>(src))
+					srcObj = new String(*ps);
+			}
+		}
+
+		// if name is legal but not on the map then error exception
+		else
+			throw NameErrorException(srcName);
 	}
 
+	// if its not a legal name then it might be a prvalue
 	else
-		rightTypeObj = getType(rightObjName);
+	{
+		srcObj = getType(srcName);
+		if (srcObj == nullptr)
+			// if the srcName is not a type nor a knowkn variable its considered bad var name
+			throw SyntaxException();
+
+	}
+
 	// if the key is already present, update it
-	if (variables_.find(leftObjName) != variables_.end())
-		variables_.at(leftObjName) = rightTypeObj;
+	if (variables_.find(destName) != variables_.end())
+	{
+		varCleanup(destName);
+		srcObj->setTemp(false);
+		variables_.at(destName) = srcObj;
+
+	}
 
 	// if not, create new keyval pair of var and its value
 	else
 	{
-		rightTypeObj = getType(rightObjName);
-		variables_.insert({ leftObjName, rightTypeObj });
+		variables_.insert({ destName, srcObj });
 	}
 	return true;
 }
@@ -155,10 +204,17 @@ void Parser::varCleanup(const std::string& key)
 {
 	auto var = variables_.find(key);
 	if (var != variables_.end())
+	{
 		// if exsit delete it
-		delete variables_.at(key);
+		if(variables_.at(key) != nullptr)
+			delete variables_.at(key);
+	}
 }
 
+std::vector<Type*> Parser::isList(const std::string& s)
+{
+	return std::vector<Type*>();
+}
 
 
 

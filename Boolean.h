@@ -5,9 +5,12 @@
 class Boolean : public Type
 {
 public:
-	Boolean(bool val);
+	Boolean(bool var);
+	Boolean(const Boolean& other);
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
 
+private:
+	bool var_;
 };
 #endif // BOOLEAN_H

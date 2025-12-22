@@ -37,6 +37,7 @@ bool Helper::isString(const std::string& s)
 
 }
 
+
 bool Helper::isDigit(char c)
 {
 	return (c >= '0' && c <= '9');

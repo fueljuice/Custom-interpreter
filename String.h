@@ -5,10 +5,12 @@
 class String : public Sequence
 {
 public:
-	String(std::string val);
+	String(std::string var);
+	String(const String& other);
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
 
-
+private:
+	std::string var_;
 };
 #endif // STRING_H

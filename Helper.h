@@ -1,6 +1,9 @@
 #ifndef _HELPER_H
 #define _HELPER_H
 
+#include "type.h"
+
+#include <algorithm>
 #include <string>
 
 // this is service class with static functions

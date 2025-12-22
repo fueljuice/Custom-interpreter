@@ -10,6 +10,7 @@
 #include "String.h"
 #include "Boolean.h"
 #include "Void.h"
+#include "List.h"
 
 
 #include <algorithm>
@@ -37,6 +38,8 @@ private:
 	// returns the value of a variable with his name as parameter
 	static Type* getVariableValue(const std::string& key);
 	
+	static std::vector<Type*> isList(const std::string& s);
+
 	// cleans the value stored in a variable
 	static void varCleanup(const std::string& key);
 

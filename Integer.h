@@ -5,13 +5,13 @@
 class Integer : public Type
 {
 public:
-	Integer(int val);
+	Integer(int var);
 	Integer(const Integer& i);
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
 
 private:
-	int val;
+	int var_;
 };
 
 #endif // INTEGER_H

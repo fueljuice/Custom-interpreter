@@ -1,6 +1,10 @@
 #include "Integer.h"
 
-Integer::Integer(const Integer& i)
+Integer::Integer(int var)
+	: var_(var){}
+
+Integer::Integer(const Integer& other)
+	: var_(other.var_)
 {
-	this->x
+	this->setTemp(other.isTemp());
 }
