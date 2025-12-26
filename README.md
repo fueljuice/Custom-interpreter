@@ -1,25 +1,55 @@
 ## Features
 
-### Supported values
-- `int` (e.g. `123`)
-- `bool` (e.g. `True`, `False`)
-- `string` (double quotes, e.g. `"hello"`)
-- `list` (non-nested, e.g. `[1, "a", 3]`)
-
+### variables
+supported variables: boolean, integer, string and lists
+```python
+>>> x = 123
+>>> x
+123
+>>> y = "abc"
+>>> y
+"abc"
+>>> z = y
+>>> z
+"abc"
+>>> n = True
+>>> n
+True
+>>> list = ["abc,.kdhf", "xyz"]
+>>> list
+["abc,.kdhf", "xyz"]
+```
 ### Supported operations
-- Variable assignment: `x = 5`, `x = [1,2]`
-- Variable lookup: `x`
-- Built-ins:
   - `type(x)`
   - `len(x)` (only for sequence types)
   - `del x` (delete variable)
+ ```python
+>>> x = 10
+>>> type(x)
+<type 'int'>
+>>> type(10)
+<type 'int'>
+>>> del x
+>>> x
+NameError : name 'x' is not defined
+>>> str = "abc"
+>>> len(str)
+3
+```
 
 ### Errors (Python-like)
 - `SyntaxError`
 - `IndentationError`
 - `NameError`
 - `TypeError`
-
----
-
-## Demo
+- 
+ ```python
+>>> =x
+SyntaxError: invalid syntax
+>>> x = b
+NameError : name 'b' is not defined
+>>>    x = 1
+IndentationError: unexpected indent
+>>> len(x)
+TypeError
+ ```
