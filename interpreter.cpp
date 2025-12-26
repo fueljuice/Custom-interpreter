@@ -38,7 +38,7 @@ int main(int argc,char **argv)
 			if (parsedType->isPrintable())
 				std::cout << parsedType->toString() << std::endl;
 
-			// deleting if its an rvalue
+			// deleting if its an prvalue
 			if (parsedType->isTemp())
 				delete parsedType;
 		}
@@ -49,6 +49,10 @@ int main(int argc,char **argv)
 		}
 
 		catch (IndentationException& ex)
+		{
+			std::cout << ex.what() << std::endl;
+		}
+		catch (NameErrorException& ex)
 		{
 			std::cout << ex.what() << std::endl;
 		}

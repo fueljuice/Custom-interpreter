@@ -5,7 +5,7 @@
 class Void : public Type
 {
 public:
-	Void();
+	Void() = default;
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
 };

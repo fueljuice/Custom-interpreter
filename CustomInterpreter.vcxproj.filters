@@ -45,13 +45,16 @@
     <ClCompile Include="Void.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Boolean.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NameErrorException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="List.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeErrorException.h">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TypeErrorException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,13 +89,13 @@
     <ClInclude Include="Void.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Boolean.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NameErrorException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="List.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltIns.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

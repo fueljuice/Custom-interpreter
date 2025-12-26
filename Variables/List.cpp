@@ -1,9 +1,5 @@
 #include "List.h"
 
-//bool List::isPrintable() const noexcept
-//{
-//
-//}
 
 std::string List::toString() const noexcept
 {
@@ -17,4 +13,18 @@ std::string List::toString() const noexcept
 	tostring += typeVector[i]->toString();
 	tostring += "]";
 	return tostring;
+}
+
+unsigned int List::seqLength() const noexcept
+{
+	return typeVector.size();
+}
+
+List::List(std::vector<Type*> v)
+	: typeVector(v)
+	{}
+
+bool List::isPrintable() const noexcept
+{
+	return true;
 }

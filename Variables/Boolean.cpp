@@ -1,6 +1,4 @@
 #include "Boolean.h"
-#include "List.h"
-
 
 Boolean::Boolean(bool val)
 	: var_(val){}
@@ -11,10 +9,6 @@ Boolean::Boolean(const Boolean& other)
 	this->setTemp(other.isTemp());
 }
 
-List::List(std::vector<Type*> v)
-	: typeVector(v){}
-
-
 bool Boolean::isPrintable() const noexcept
 {
 	return true;
@@ -22,5 +16,7 @@ bool Boolean::isPrintable() const noexcept
 
 std::string Boolean::toString() const noexcept
 {
-	return std::string();
+	if (var_)
+		return "True";
+	return "False";
 }

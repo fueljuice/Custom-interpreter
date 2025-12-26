@@ -9,6 +9,8 @@ public:
 	String(const String& other);
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
+	unsigned int seqLength() const noexcept;
+
 
 private:
 	std::string var_;

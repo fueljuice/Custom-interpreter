@@ -2,6 +2,9 @@
 
 bool Helper::isInteger(const std::string& s)
 {
+	if (s == "")
+		return false;
+
 	int start = (s[0] == '-') ? 1 : 0;
 	for (int i = start; i < s.size(); i++)
 	{

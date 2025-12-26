@@ -8,3 +8,14 @@ Integer::Integer(const Integer& other)
 {
 	this->setTemp(other.isTemp());
 }
+
+
+bool Integer::isPrintable() const noexcept
+{
+	return true;
+}
+
+std::string Integer::toString() const noexcept
+{
+	return std::to_string(var_);
+}

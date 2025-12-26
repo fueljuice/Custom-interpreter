@@ -23,8 +23,8 @@ public:
 	static bool isDigit(char c);
 
 	// check if the parameter is lower letter
-	static bool isLowerLetter(char c);	
-	
+	static bool isLowerLetter(char c);
+
 	// check if the parameter is upper letter
 	static bool isUpperLetter(char c);
 
@@ -35,16 +35,16 @@ public:
 	static bool isUnderscore(char c);
 
 	// remove whitespace from the begining and the end of the string
-	static void trim(std::string &str);
+	static void trim(std::string& str);
 
 	// remove whitespace from the end of the string
-	static void rtrim(std::string &str);  
+	static void rtrim(std::string& str);
 
 	// remove whitespace from the beginning of the string
-	static void ltrim(std::string &str); 
+	static void ltrim(std::string& str);
 
 	// remove leading zeros from the beginning of the string
-	static void removeLeadingZeros(std::string &str); 
+	static void removeLeadingZeros(std::string& str);
 
 };
 

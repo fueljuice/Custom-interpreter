@@ -123,7 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Boolean.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="IndentationException.cpp" />
     <ClCompile Include="Integer.cpp" />
@@ -135,10 +134,12 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="SyntaxException.cpp" />
     <ClCompile Include="Type.cpp" />
+    <ClCompile Include="TypeErrorException.cpp" />
+    <ClCompile Include="TypeErrorException.h" />
     <ClCompile Include="Void.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Boolean.h" />
+    <ClInclude Include="BuiltIns.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="IndentationException.h" />
     <ClInclude Include="Integer.h" />

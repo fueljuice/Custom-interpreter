@@ -9,9 +9,9 @@ class List : public Sequence
 {
 public:
 	List(std::vector<Type*> v);
-	List(const List& other);
 	bool isPrintable() const noexcept;
 	std::string toString() const noexcept;
+	unsigned int seqLength() const noexcept;
 
 private:
 	std::vector<Type*> typeVector;
