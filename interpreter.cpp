@@ -8,15 +8,7 @@
 #define WELCOME "Welcome to Python Interperter version 1.0 by "
 #define YOUR_NAME "Zohar Frosh"
 
-///
-/// דברים שלמדתי מהפרויקט
-/// downcasting
-/// std::map
-/// exception handling / class creating
-/// 
-/// 
-///
-/// 
+
 int main(int argc,char **argv)
 {
 	std::cout << WELCOME << YOUR_NAME << std::endl;
